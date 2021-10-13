@@ -4,7 +4,6 @@
 VERSION=$(shell python -c 'import swift-cloud-tools; print(swift-cloud-tools.__version__)')
 
 CWD="`pwd`"
-PROJECT_NAME = swift-cloud-tools
 PROJECT_HOME = $(CWD)
 
 help:

@@ -2,7 +2,7 @@
 
 from setuptools import find_packages, setup
 
-VERSION = __import__('swift-cloud-tools').__version__
+VERSION = __import__('swift_cloud_tools').__version__
 
 setup(
     name='python-swift-cloud-tools',
