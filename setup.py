@@ -14,7 +14,7 @@ setup(
     author_email='storm@g.globo',
     url='https://github.com/globocom/python-swift-cloud-tools',
     install_requires=[
-        'requests==2.26.0'
+        'requests==2.19.1'
     ],
     packages=find_packages(exclude=['tests*']),
     include_package_data=True,
