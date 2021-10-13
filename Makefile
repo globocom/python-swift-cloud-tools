@@ -1,7 +1,7 @@
 .PHONY: help clean setup pycodestyle tests tests-ci dist release
 
 # Version package
-VERSION=$(shell python -c 'import swift-cloud-tools; print(swift-cloud-tools.__version__)')
+VERSION=$(shell python -c 'import swift_cloud_tools; print(swift_cloud_tools.__version__)')
 
 CWD="`pwd`"
 PROJECT_HOME = $(CWD)
