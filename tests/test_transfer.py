@@ -49,7 +49,7 @@ class TestTransfer(TestCase):
         }
 
         status = 201
-        content = "Transfer project '{}' environment '{}' created".format(project_name, environment)
+        content = f"Transfer project '{project_name}' environment '{environment}' created"
 
         mock = Mock()
         mock.content = content
@@ -58,7 +58,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_create(project_id, project_name, environment)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/transfer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -97,7 +97,7 @@ class TestTransfer(TestCase):
 
         response = client.transfer_create(project_id, project_name, environment)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/transfer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -131,7 +131,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_create(project_id, project_name, environment)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/transfer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -174,7 +174,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_get(project_id)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/{}'.format(self.sct_host, project_id),
+            f'{self.sct_host}/v1/transfer/{project_id}',
             headers=headers
         )
         self.assertEqual(response.status_code, status)
@@ -199,7 +199,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_get(project_id)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/{}'.format(self.sct_host, project_id),
+            f'{self.sct_host}/v1/transfer/{project_id}',
             headers=headers
         )
         self.assertEqual(response.status_code, status)
@@ -224,7 +224,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_get(project_id)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/{}'.format(self.sct_host, project_id),
+            f'{self.sct_host}/v1/transfer/{project_id}',
             headers=headers
         )
         self.assertEqual(response.status_code, status)
@@ -249,7 +249,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_status(project_id)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/status/{}'.format(self.sct_host, project_id),
+            f'{self.sct_host}/v1/transfer/status/{project_id}',
             headers=headers
         )
         self.assertEqual(response.status_code, status)
@@ -274,7 +274,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_status(project_id)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/status/{}'.format(self.sct_host, project_id),
+            f'{self.sct_host}/v1/transfer/status/{project_id}',
             headers=headers
         )
         self.assertEqual(response.status_code, status)
@@ -299,7 +299,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_status(project_id)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/status/{}'.format(self.sct_host, project_id),
+            f'{self.sct_host}/v1/transfer/status/{project_id}',
             headers=headers
         )
         self.assertEqual(response.status_code, status)
@@ -324,7 +324,7 @@ class TestTransfer(TestCase):
 
         response = self.client.transfer_status(project_id)
         mock_request.assert_called_once_with(
-            '{}/v1/transfer/status/{}'.format(self.sct_host, project_id),
+            f'{self.sct_host}/v1/transfer/status/{project_id}',
             headers=headers
         )
         self.assertEqual(response.status_code, status)
