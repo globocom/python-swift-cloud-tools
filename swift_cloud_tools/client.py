@@ -22,7 +22,7 @@ logger = logging.getLogger('swift-cloud-tools')
 class SCTClient(object):
 
     def __init__(self, sct_host, sct_api_key):
-        self.sct_url = '{}/v1'.format(sct_host)
+        self.sct_url = f'{sct_host}/v1'
         self.sct_api_key = sct_api_key
 
     def expirer_create(self, account, container, obj, date):
@@ -39,7 +39,7 @@ class SCTClient(object):
         }
 
         response = requests.post(
-            '{}/expirer/'.format(self.sct_url),
+            f'{self.sct_url}/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -58,7 +58,7 @@ class SCTClient(object):
         }
 
         response = requests.delete(
-            '{}/expirer/'.format(self.sct_url),
+            f'{self.sct_url}/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -77,7 +77,7 @@ class SCTClient(object):
         }
 
         response = requests.post(
-            '{}/transfer/'.format(self.sct_url),
+            f'{self.sct_url}/transfer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -90,7 +90,7 @@ class SCTClient(object):
         }
 
         response = requests.get(
-            '{}/transfer/{}'.format(self.sct_url, project_id),
+            f'{self.sct_url}/transfer/{project_id}',
             headers=headers
         )
         return response
@@ -102,7 +102,7 @@ class SCTClient(object):
         }
 
         response = requests.get(
-            '{}/transfer/status/{}'.format(self.sct_url, project_id),
+            f'{self.sct_url}/transfer/status/{project_id}',
             headers=headers
         )
         return response
