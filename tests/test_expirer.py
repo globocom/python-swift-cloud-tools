@@ -51,7 +51,7 @@ class TestExpirer(TestCase):
         }
 
         status = 201
-        content = "Expired object '{}/{}/{}' created".format(account, container, obj)
+        content = f"Expired object '{account}/{container}/{obj}' created"
 
         mock = Mock()
         mock.content = content
@@ -60,7 +60,7 @@ class TestExpirer(TestCase):
 
         response = self.client.expirer_create(account, container, obj, date)
         mock_request.assert_called_once_with(
-            '{}/v1/expirer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -101,7 +101,7 @@ class TestExpirer(TestCase):
 
         response = client.expirer_create(account, container, obj, date)
         mock_request.assert_called_once_with(
-            '{}/v1/expirer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -137,7 +137,7 @@ class TestExpirer(TestCase):
 
         response = self.client.expirer_create(account, container, obj, date)
         mock_request.assert_called_once_with(
-            '{}/v1/expirer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -173,7 +173,7 @@ class TestExpirer(TestCase):
 
         response = self.client.expirer_create(account, container, obj, date)
         mock_request.assert_called_once_with(
-            '{}/v1/expirer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -198,7 +198,7 @@ class TestExpirer(TestCase):
         }
 
         status = 200
-        content = "Expired object '{}/{}/{}' deleted".format(account, container, obj)
+        content = f"Expired object '{account}/{container}/{obj}' deleted"
 
         mock = Mock()
         mock.content = content
@@ -207,7 +207,7 @@ class TestExpirer(TestCase):
 
         response = self.client.expirer_delete(account, container, obj)
         mock_request.assert_called_once_with(
-            '{}/v1/expirer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -241,7 +241,7 @@ class TestExpirer(TestCase):
 
         response = self.client.expirer_delete(account, container, obj)
         mock_request.assert_called_once_with(
-            '{}/v1/expirer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/expirer/',
             data=json.dumps(data),
             headers=headers
         )
@@ -275,7 +275,7 @@ class TestExpirer(TestCase):
 
         response = self.client.expirer_delete(account, container, obj)
         mock_request.assert_called_once_with(
-            '{}/v1/expirer/'.format(self.sct_host),
+            f'{self.sct_host}/v1/expirer/',
             data=json.dumps(data),
             headers=headers
         )
