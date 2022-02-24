@@ -329,3 +329,101 @@ class TestTransfer(TestCase):
         )
         self.assertEqual(response.status_code, status)
         self.assertEqual(response.json, content)
+
+    @patch('swift_cloud_tools.client.requests.get')
+    def test_transfer_status_all(self, mock_request):
+        project_id = '64b10d56454c4b1eb91b46b62d27c8b2'
+        project_name = 'alan'
+        environment = 'dev'
+        page = 1
+        per_page = 50
+
+        headers = {
+            'Content-type': 'application/json',
+            'X-Auth-Token': self.sct_api_key
+        }
+
+        status = 200
+        content = {
+            "page": page,
+            "per_page": per_page,
+            "pages": 0,
+            "total": 0,
+            "items": [
+                {
+                    'id': 22,
+                    'project_id': project_id,
+                    'project_name': project_name,
+                    'environment': environment,
+                    'container_count_swift': 0,
+                    'object_count_swift': 0,
+                    'bytes_used_swift': 0,
+                    'last_object': '',
+                    'count_error': 0,
+                    'container_count_gcp': 0,
+                    'object_count_gcp': 0,
+                    'bytes_used_gcp': 0,
+                    'initial_date': '2021-10-07 11:05:00',
+                    'final_date': '2021-10-07 11:29:00'
+                }
+            ]
+        }
+
+        mock = Mock()
+        mock.json = content
+        mock.status_code = status
+        mock_request.return_value = mock
+
+        response = self.client.transfer_status_all(page, per_page)
+        mock_request.assert_called_once_with(
+            '{}/v1/transfer/status?page={}&per_page={}'.format(self.sct_host, page, per_page),
+            headers=headers
+        )
+        self.assertEqual(response.status_code, status)
+        self.assertEqual(response.json, content)
+
+    @patch('swift_cloud_tools.client.requests.post')
+    def test_transfer_status_by_projects(self, mock_request):
+        project_id = '64b10d56454c4b1eb91b46b62d27c8b2'
+        project_name = 'alan'
+        environment = 'dev'
+
+        headers = {
+            'Content-type': 'application/json',
+            'X-Auth-Token': self.sct_api_key
+        }
+
+        status = 200
+        content = [
+            {
+                'id': 22,
+                'project_id': project_id,
+                'project_name': project_name,
+                'environment': environment,
+                'container_count_swift': 0,
+                'object_count_swift': 0,
+                'bytes_used_swift': 0,
+                'last_object': '',
+                'count_error': 0,
+                'container_count_gcp': 0,
+                'object_count_gcp': 0,
+                'bytes_used_gcp': 0,
+                'initial_date': '2021-10-07 11:05:00',
+                'final_date': '2021-10-07 11:29:00'
+            }
+        ]
+
+        mock = Mock()
+        mock.json = content
+        mock.status_code = status
+        mock_request.return_value = mock
+        project_ids = [project_id]
+
+        response = self.client.transfer_status_by_projects(project_ids)
+        mock_request.assert_called_once_with(
+            '{}/v1/transfer/status'.format(self.sct_host),
+            data=json.dumps(project_ids),
+            headers=headers
+        )
+        self.assertEqual(response.status_code, status)
+        self.assertEqual(response.json, content)

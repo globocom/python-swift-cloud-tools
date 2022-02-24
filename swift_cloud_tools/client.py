@@ -106,3 +106,28 @@ class SCTClient(object):
             headers=headers
         )
         return response
+
+    def transfer_status_all(self, page=1, per_page=50):
+        headers = {
+            'Content-type': 'application/json',
+            'X-Auth-Token': self.sct_api_key
+        }
+
+        response = requests.get(
+            '{}/transfer/status?page={}&per_page={}'.format(self.sct_url, page, per_page),
+            headers=headers
+        )
+        return response
+
+    def transfer_status_by_projects(self, project_ids):
+        headers = {
+            'Content-type': 'application/json',
+            'X-Auth-Token': self.sct_api_key
+        }
+
+        response = requests.post(
+            '{}/transfer/status'.format(self.sct_url),
+            data=json.dumps(project_ids),
+            headers=headers
+        )
+        return response
