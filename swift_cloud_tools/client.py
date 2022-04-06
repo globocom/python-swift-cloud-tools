@@ -131,3 +131,16 @@ class SCTClient(object):
             headers=headers
         )
         return response
+
+    def billing_get_price_from_service(self, service, sku, amount):
+        headers = {
+            'Content-type': 'application/json',
+            'X-Auth-Token': self.sct_api_key
+        }
+
+        response = requests.get(
+            '{}/billing/sku_price_from_service/service/{}/sku/{}/amount/{}'.format(
+                self.sct_url, service, sku, amount),
+            headers=headers
+        )
+        return response
